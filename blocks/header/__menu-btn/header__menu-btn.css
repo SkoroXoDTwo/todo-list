@@ -1,0 +1,21 @@
+.header__menu-btn {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: 0;
+  color: #fff;
+  font-size: 16px;
+  line-height: 16px;
+  transition: opacity 0.2s;
+}
+
+.header__menu-btn:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 700px) {
+  .header__menu-btn {
+    font-size: 12px;
+  }
+}

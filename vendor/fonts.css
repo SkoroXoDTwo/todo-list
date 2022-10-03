@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'PressStart2PR';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/press-start-2p/PressStart2PRegular.woff") format("woff");
+}

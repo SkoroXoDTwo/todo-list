@@ -14,3 +14,14 @@
 
 /* -------------- main -------------- */
 @import url(../blocks/main/main.css);
+
+/* -------------- group -------------- */
+@import url(../blocks/group/group.css);
+@import url(../blocks/group/__title/group__title.css);
+@import url(../blocks/group/__list/group__list.css);
+@import url(../blocks/group/__add-btn/group__add-btn.css);
+@import url(../blocks/group/__list-selection/group__list-selection.css);
+
+/* -------------- task -------------- */
+@import url(../blocks/task/task.css);
+@import url(../blocks/task/__title/task__title.css);

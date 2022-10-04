@@ -25,3 +25,7 @@
 /* -------------- task -------------- */
 @import url(../blocks/task/task.css);
 @import url(../blocks/task/__title/task__title.css);
+
+/* -------------- footer -------------- */
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);

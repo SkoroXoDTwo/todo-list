@@ -1,32 +1,27 @@
-.header {
+.footer {
   padding: 30px 200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #000; 
 }
 
 @media screen and (max-width: 1280px) {
-  .header {
+  .footer {
     padding: 30px 100px;
   }
 }
 
 @media screen and (max-width: 900px) {
-  .header {
-    padding: 25px 50px;
+  .footer {
+    padding: 30px 50px;
   }
 }
 
 @media screen and (max-width: 700px) {
-  .header {
+  .footer {
     padding: 25px 30px;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .header {
+  .footer {
     padding: 15px 5px;
   }
 }
-

@@ -10,4 +10,16 @@
   color: #fff;
   font-size: 16px;
   line-height: 1.25;
+
+}
+
+@media screen and (max-width: 700px) {
+  .task__textarea {
+    padding: 5px 10px;
+    min-height: 40px;
+    font-size: 10px;
+  }
+  .task__textarea::placeholder {
+    font-size: 10px;
+  }
 }

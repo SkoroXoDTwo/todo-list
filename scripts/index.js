@@ -2,10 +2,9 @@ const mainSection = document.querySelector('.main');
 const taskListSection = document.querySelector('.task__list');
 const documentElement = document.documentElement;
 let isDesctopPositionSection = () => document.documentElement.offsetWidth > 700;
-let getHeightScrollScreen = () => documentElement.scrollHeight - window.innerHeight;
+let getHeightScrollScreen = () => documentElement.scrollHeight - documentElement.offsetHeight;
 
 function changeHeightSectionTask () {
- // console.log(window.VisualViewport.height);
   mainSection.removeAttribute('style');
   taskListSection.removeAttribute('style');
 

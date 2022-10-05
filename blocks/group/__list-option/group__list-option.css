@@ -1,4 +1,4 @@
-.group__list-selection {
+.group__list-option {
   margin: 0;
   padding: 0;
   border: none;
@@ -12,7 +12,7 @@
   transition: opacity 0.2s;
 }
 
-.group__list-selection:hover {
+.group__list-option:hover {
   cursor: pointer;
   opacity: 0.6;
 }

@@ -1,0 +1,16 @@
+.group__select {
+  margin: 0 20px;
+  padding: 5px;
+  width: 100%;
+  display: none;
+  background: #acacac;
+  color: #fff;
+  border-radius: 14px;
+  text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+  .group__select {
+    display: block;
+  }
+}

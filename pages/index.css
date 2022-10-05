@@ -20,13 +20,14 @@
 @import url(../blocks/group/__title/group__title.css);
 @import url(../blocks/group/__list/group__list.css);
 @import url(../blocks/group/__add-btn/group__add-btn.css);
-@import url(../blocks/group/__list-selection/group__list-selection.css);
+@import url(../blocks/group/__list-option/group__list-option.css);
+@import url(../blocks/group/__select/group__select.css);
 
 /* -------------- task -------------- */
 @import url(../blocks/task/task.css);
 @import url(../blocks/task/__title/task__title.css);
 @import url(../blocks/task/__list/task__list.css);
-@import url(../blocks/task/__list-selection/task__list-selection.css);
+@import url(../blocks/task/__list-option/task__list-option.css);
 @import url(../blocks/task/__form/task__form.css);
 @import url(../blocks/task/__textarea/task__textarea.css);
 @import url(../blocks/task/__add-btn/task__add-btn.css);

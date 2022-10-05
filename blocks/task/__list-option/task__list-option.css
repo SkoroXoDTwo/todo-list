@@ -1,4 +1,4 @@
-.task__list-selection {
+.task__list-option {
   margin: 0;
   padding: 10px 20px;
   width: 100%;
@@ -12,4 +12,10 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 700px) {
+  .task__list-option {
+    font-size: 10px;
+  }
 }

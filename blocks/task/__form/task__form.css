@@ -1,0 +1,5 @@
+.task__form {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}

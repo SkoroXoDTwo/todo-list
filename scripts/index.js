@@ -1,17 +1,21 @@
-function changeSecondBlock() {
-  const heightHeader = document.querySelector('.header').offsetHeight;
-  const heightFooter = document.querySelector('.footer').offsetHeight;
-  const heightTask = document.querySelector('.task').offsetHeight;
-  const screenHeight = document.documentElement.offsetHeight;
-  const screenWigth = document.documentElement.offsetWidth;
-  if (screenWigth < 700) {
-    document.querySelector('.group').style.maxHeight = (screenHeight - heightHeader - heightFooter - heightTask) + 'px';
+const mainSection = document.querySelector('.main');
+const taskListSection = document.querySelector('.task__list');
+const documentElement = document.documentElement;
+let isDesctopPositionSection = () => document.documentElement.offsetWidth > 700;
+let getHeightScrollScreen = () => documentElement.scrollHeight - documentElement.offsetHeight;
+
+function changeHeightSectionTask () {
+  mainSection.removeAttribute('style');
+  taskListSection.removeAttribute('style');
+
+  if (isDesctopPositionSection()) {
+    mainSection.style.height = (mainSection.offsetHeight - getHeightScrollScreen()) + 'px';
   }
   else {
-    document.querySelector('.group').style.maxHeight = (screenHeight - heightHeader - heightFooter) + 'px';
+    taskListSection.style.height = (taskListSection.offsetHeight - getHeightScrollScreen()) + 'px';
   }
 }
 
-changeSecondBlock();
+changeHeightSectionTask();
 
-window.addEventListener('resize', () => { changeSecondBlock(); });
+window.addEventListener('resize', () => { changeHeightSectionTask();});

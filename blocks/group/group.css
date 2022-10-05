@@ -4,21 +4,21 @@
   align-items: center;
   min-width: 400px;
   border-right: 1px solid #000;
-  padding: 40px 20px 50px;
+  padding: 40px 0 50px;
   box-sizing: border-box;
 }
 
 @media screen and (max-width: 1280px) {
   .group {
     min-width: 300px;
-    padding: 30px 20px 50px;
+    padding: 30px 0 50px;
   }
 }
 
 @media screen and (max-width: 900px) {
   .group {
     min-width: 200px;
-    padding: 25px 20px 50px;
+    padding: 25px 0 50px;
   }
 }
 
@@ -26,12 +26,12 @@
   .group {
     border-right: none;
     border-bottom: 1px solid #000;
-    padding: 25px 20px 40px;
+    padding: 25px 0 40px;
   }
 }
 
 @media screen and (max-width: 500px) {
   .group {
-    padding: 15px 20px 30px;
+    padding: 15px 0 30px;
   }
 }

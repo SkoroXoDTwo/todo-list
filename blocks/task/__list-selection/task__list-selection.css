@@ -1,0 +1,15 @@
+.task__list-selection {
+  margin: 0;
+  padding: 10px 20px;
+  width: 100%;
+  min-height: 50px;
+  background: #1f1e1e;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.25;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}

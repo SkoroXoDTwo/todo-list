@@ -25,6 +25,11 @@
 /* -------------- task -------------- */
 @import url(../blocks/task/task.css);
 @import url(../blocks/task/__title/task__title.css);
+@import url(../blocks/task/__list/task__list.css);
+@import url(../blocks/task/__list-selection/task__list-selection.css);
+@import url(../blocks/task/__form/task__form.css);
+@import url(../blocks/task/__textarea/task__textarea.css);
+@import url(../blocks/task/__add-btn/task__add-btn.css);
 
 /* -------------- footer -------------- */
 @import url(../blocks/footer/footer.css);

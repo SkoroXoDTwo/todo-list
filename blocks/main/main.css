@@ -1,6 +1,7 @@
 .main {
   padding: 0 200px;
   display: flex;
+  height: 100%;
 }
 
 @media screen and (max-width: 1280px) {

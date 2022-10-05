@@ -1,0 +1,13 @@
+.task__textarea {
+  margin: 0 0 0 20px;
+  padding: 10px 20px;
+  border: none;
+  resize: none;
+  width: 100%;
+  min-height: 70px;
+  background: #acacac;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.25;
+}

@@ -28,25 +28,8 @@
     <main class="main">
       <section class="group">
         <h2 class="group__title">Group</h2>
-        <ul class="group__list">
-          <li class="group__list-item group__list-item_active">
-            <p class="group__item-text">Home</p>
-            <nav>
-              <ul class="group__item-menu">
-                <li>
-                  <button class="group__item-btn group__item-btn_type_edit" type="button"></button>
-                </li>
-                <li>
-                  <button class="group__item-btn group__item-btn_type_delete" type="button"></button>
-                </li>
-              </ul>
-            </nav>
-          </li>
-        </ul>
-        <select class="group__select">
-          <option class="group__select-option">home</option>
-        </select>
-
+        <ul class="group__list"></ul>
+        <select class="group__select"></select>
         <button class="group__add-btn">add group</button>
       </section>
 
@@ -83,6 +66,25 @@
       </li>
     </template>
 
+    <template id="group-list-item-template">
+      <li class="group__list-item">
+        <p class="group__item-text">Home</p>
+        <nav>
+          <ul class="group__item-menu">
+            <li>
+              <button class="group__item-btn group__item-btn_type_edit" type="button"></button>
+            </li>
+            <li>
+              <button class="group__item-btn group__item-btn_type_delete" type="button"></button>
+            </li>
+          </ul>
+        </nav>
+      </li>
+    </template>
+
+    <template id="group-select-item-template">
+      <option class="group__select-option">home</option>
+    </template>
   </div>
 </body>
 </html>

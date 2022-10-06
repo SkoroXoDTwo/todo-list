@@ -15,5 +15,18 @@ const initialTaskListItems = [
         checkbox: false
       }
     ]
+  },
+  {
+    group: 'work',
+    tasks: [
+      {
+        text: 'привязать все звонки',
+        checkbox: false
+      },
+      {
+        text: 'почитать почту',
+        checkbox: false
+      }
+    ]
   }
 ];

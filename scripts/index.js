@@ -20,9 +20,15 @@ function changeHeightSectionTask () {
   }
 }
 
+function deleteTaskListItem (item) {
+  item.remove();
+}
+
 function createTaskListItem (text) {
   const listItem = taskItemTemplate.querySelector('.task__list-item').cloneNode(true);
   const textItem = listItem.querySelector('.task__item-text');
+  const deleteBtnItem = listItem.querySelector('.task__item-btn_type_delete');
+  deleteBtnItem.addEventListener('click', () => { deleteTaskListItem(listItem); });
 
   textItem.textContent = text;
   return listItem;

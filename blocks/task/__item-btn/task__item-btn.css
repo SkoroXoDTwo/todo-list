@@ -1,0 +1,21 @@
+.task__item-btn {
+  margin: 0;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-size: contain;
+  transition: opacity 0.2s;
+}
+
+.task__item-btn:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 500px) {
+  .task__item-btn {
+    width: 15px;
+    height: 15px;
+  }
+}

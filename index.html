@@ -48,31 +48,20 @@
       <section class="task">
         <h2 class="task__title">Task</h2>
         <ul class="task__list">
-          <li>
-            <p class="task__list-option">Home home home home home home home home home</p>
+          <li class="task__list-item">
+            <input class="task__checkbox" type="checkbox">
+            <p class="task__item-text">Home home home home home home home home home</p>
+            <nav>
+              <ul class="task__item-menu">
+                <li>
+                  <button class="task__item-btn task__item-btn_type_edit"></button>
+                </li>
+                <li>
+                  <button class="task__item-btn task__item-btn_type_delete"></button>
+                </li>
+              </ul>
+            </nav>
           </li>
-          <li>
-            <p class="task__list-option">Home home home home home home home home home</p>
-          </li>
-          <li>
-            <p class="task__list-option">Home home home home home home home home home</p>
-          </li>
-          <li>
-            <p class="task__list-option">Home home home home home home home home home</p>
-          </li>
-          <li>
-            <p class="task__list-option">Home home home home home home home home home</p>
-          </li>
-          <li>
-            <p class="task__list-option">Home home home home home home home home home</p>
-          </li>
-          <li>
-            <p class="task__list-option">Home home home home home home home home home</p>
-          </li>
-          <li>
-            <p class="task__list-option">Home home home home home home home home home</p>
-          </li>
-
         </ul>
         <form class="task__form">
           <textarea class="task__textarea" placeholder="Введите текст..."></textarea>
@@ -84,5 +73,24 @@
     <footer class="footer">
       <h2 class="footer__copyright">&copy; 2022 Alexey Belkov</h2>
     </footer>
+
+    <template id="task-list-option-template">
+      <li class="task__list-item">
+        <input class="task__checkbox" type="checkbox">
+        <p class="task__item-text">Home home home home home home home home home</p>
+        <nav>
+          <ul class="task__item-menu">
+            <li>
+              <button class="task__item-btn task__item-btn_type_edit"></button>
+            </li>
+            <li>
+              <button class="task__item-btn task__item-btn_type_delete"></button>
+            </li>
+          </ul>
+        </nav>
+      </li>
+    </template>
+
+  </div>
 </body>
 </html>

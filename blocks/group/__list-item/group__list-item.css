@@ -1,0 +1,18 @@
+.group__list-item {
+  margin: 0;
+  padding: 10px;
+  border: none;
+  width: 100%;
+  background: #1f1e1e;
+  border-radius: 14px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  transition: opacity 0.2s;
+  box-sizing: border-box;
+}
+
+.group__list-item:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}

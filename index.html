@@ -29,21 +29,25 @@
       <section class="group">
         <h2 class="group__title">Group</h2>
         <ul class="group__list">
-          <li>
-            <button class="group__list-option">Home</button>
+          <li class="group__list-item group__list-item_active">
+            <p class="group__item-text">Home</p>
+            <nav>
+              <ul class="group__item-menu">
+                <li>
+                  <button class="group__item-btn group__item-btn_type_edit" type="button"></button>
+                </li>
+                <li>
+                  <button class="group__item-btn group__item-btn_type_delete" type="button"></button>
+                </li>
+              </ul>
+            </nav>
           </li>
         </ul>
-
         <select class="group__select">
-          <option>
-            home
-          </option>
-          <option>
-            home
-          </option>
+          <option class="group__select-option">home</option>
         </select>
 
-        <button class="group__add-btn">add</button>
+        <button class="group__add-btn">add group</button>
       </section>
 
       <section class="task">
@@ -65,7 +69,7 @@
     <template id="task-list-option-template">
       <li class="task__list-item">
         <input class="task__checkbox" type="checkbox">
-        <p class="task__item-text">Home home home home home home home home home</p>
+        <p class="task__item-text"></p>
         <nav>
           <ul class="task__item-menu">
             <li>

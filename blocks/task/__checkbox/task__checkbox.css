@@ -3,3 +3,7 @@
   width: 100%;
   height: 20px;
 }
+
+.task__checkbox:hover {
+  cursor: pointer;
+}

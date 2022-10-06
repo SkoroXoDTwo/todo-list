@@ -7,6 +7,7 @@ const formAddTaskBtn = formAddTask.querySelector('.task__add-btn');
 const taskItemTemplate = document.querySelector('#task-list-option-template').content;
 let itemListActionEdit;
 let typeSumbitForm = 'add';
+let selectGroup = initialTaskListItems[0].group;
 let isDesctopPositionSection = () => document.documentElement.offsetWidth > 700;
 let getHeightScrollScreen = () => documentElement.scrollHeight - documentElement.offsetHeight;
 
@@ -27,10 +28,17 @@ function deleteTaskListItem (item) {
   item.remove();
 }
 
-function editTaskListItem (item, text) {
+function fillFormEditTaskListItem (item, text) {
   inputTextTask.value = text;
   itemListActionEdit = item;
   typeSumbitForm = 'edit';
+  formAddTaskBtn.textContent = typeSumbitForm;
+}
+
+function editTaskListItem () {
+  const textItem = itemListActionEdit.querySelector('.task__item-text');
+  textItem.textContent = inputTextTask.value;
+  typeSumbitForm = 'add';
   formAddTaskBtn.textContent = typeSumbitForm;
 }
 
@@ -41,28 +49,41 @@ function createTaskListItem (text) {
   const editBtnItem = listItem.querySelector('.task__item-btn_type_edit');
   textItem.textContent = text;
   deleteBtnItem.addEventListener('click', () => { deleteTaskListItem(listItem); });
-  editBtnItem.addEventListener('click', () => { editTaskListItem(listItem, text); });
+  editBtnItem.addEventListener('click', () => { fillFormEditTaskListItem(listItem, text); });
 
   return listItem;
 }
 
-function formTaskSubmitHandler (evt) {
-  evt.preventDefault();
-  if (typeSumbitForm === 'add') {
-    taskListSection.append(createTaskListItem(inputTextTask.value));
-    inputTextTask.value = '';
-  }
-
-  if (typeSumbitForm === 'edit') {
-    const textItem = itemListActionEdit.querySelector('.task__item-text');
-    textItem.textContent = inputTextTask.value;
-    typeSumbitForm = 'add';
-    formAddTaskBtn.textContent = typeSumbitForm;
-    inputTextTask.value = '';
-  }
+function renderTaskListItem (text) {
+  const item = createTaskListItem(text);
+  taskListSection.append(item);
 }
 
-changeHeightSectionTask();
+function renderTasks (containerItem) {
+  containerItem.forEach((item) => {
+    if (item.group === selectGroup) {
+      item.tasks.forEach((task) => {
+        renderTaskListItem(task.text);
+      });
+    }
+  });
+}
 
+function formTaskSubmitHandler (evt) {
+  evt.preventDefault();
+
+  switch (typeSumbitForm) {
+    case 'add':
+      renderTaskListItem(inputTextTask.value);
+        break;
+    case 'edit':
+      editTaskListItem();
+  }
+
+  inputTextTask.value = '';
+}
+console.log(initialTaskListItems);
+changeHeightSectionTask();
+renderTasks(initialTaskListItems);
 window.addEventListener('resize', () => { changeHeightSectionTask(); });
 formAddTask.addEventListener('submit', formTaskSubmitHandler);

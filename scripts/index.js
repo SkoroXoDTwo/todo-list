@@ -46,17 +46,15 @@ function editTaskListItem () {
   formAddTaskBtn.textContent = typeSumbitForm;
 }
 
-function activeGroupListItem (item) {
-  item.classList.toggle('group__list-item_active');
-  const textItem = item.querySelector('.group__item-text');
-//  selectGroup = textItem.textContent;
- // renderTasks(initialTaskListItems);
+function activeGroupListItem (textItem) {
+  selectGroup = textItem.textContent;
+  renderTaskList(initialTaskListItems);
 }
 
 function createGroupListItem (text) {
   const listItem = groupListItemTemplate.querySelector('.group__list-item').cloneNode(true);
   const textItem = listItem.querySelector('.group__item-text');
-  listItem.addEventListener('click', () => { activeGroupListItem(listItem); });
+  listItem.addEventListener('click', () => { activeGroupListItem(textItem); });
   textItem.textContent = text;
 
   return listItem;
@@ -81,7 +79,6 @@ function createTaskListItem (text) {
   return listItem;
 }
 
-
 function renderGroupListItem (text) {
   const item = createGroupListItem(text);
   groupListSection.append(item);
@@ -92,24 +89,30 @@ function renderGroupSelectItem (text) {
   groupSelectSection.append(item);
 }
 
+function renderGroups (containerItem) {
+  containerItem.forEach((item) => {
+    renderGroupListItem(item.group);
+    renderGroupSelectItem(item.group);
+  });
+}
+
 function renderTaskListItem (text) {
   const item = createTaskListItem(text);
   taskListSection.append(item);
 }
 
-function renderTaskList (tasks) {
-  tasks.forEach((task) => { renderTaskListItem(task.text); });
-}
-
-function renderTasks (containerItem) {
-  containerItem.forEach((item) => {
-    renderGroupListItem(item.group);
-    renderGroupSelectItem(item.group);
-
+function renderTaskList (item) {
+  taskListSection.innerHTML = '';
+  item.forEach((item) => {
     if (item.group === selectGroup) {
-      renderTaskList(item.tasks);
+      item.tasks.forEach((task) => { renderTaskListItem(task.text); });
     }
   });
+}
+
+function renderMain (containerItem) {
+  renderGroups(containerItem)
+  renderTaskList(containerItem);
 }
 
 function formTaskSubmitHandler (evt) {
@@ -127,6 +130,6 @@ function formTaskSubmitHandler (evt) {
 }
 
 changeHeightSectionTask();
-renderTasks(initialTaskListItems);
+renderMain(initialTaskListItems);
 window.addEventListener('resize', () => { changeHeightSectionTask(); });
 formAddTask.addEventListener('submit', formTaskSubmitHandler);

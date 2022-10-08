@@ -46,8 +46,25 @@ function editTaskListItem () {
   formAddTaskBtn.textContent = typeSumbitForm;
 }
 
+function changeSelected () {
+  let opts = groupSelectSection.options;
+
+  for(let i = 0; i < opts.length; i++) {
+    if(opts[i].textContent === selectGroup) {
+      groupSelectSection.getElementsByTagName('option')[i].selected = true;
+      break;
+    }
+  }
+}
+
 function activeGroupListItem (textItem) {
   selectGroup = textItem.textContent;
+  changeSelected();
+  renderTaskList(initialTaskListItems);
+}
+
+function activeGroupSelectItem () {
+  selectGroup = groupSelectSection.options[groupSelectSection.selectedIndex].text;
   renderTaskList(initialTaskListItems);
 }
 
@@ -133,3 +150,6 @@ changeHeightSectionTask();
 renderMain(initialTaskListItems);
 window.addEventListener('resize', () => { changeHeightSectionTask(); });
 formAddTask.addEventListener('submit', formTaskSubmitHandler);
+
+groupSelectSection.addEventListener('change', activeGroupSelectItem);
+

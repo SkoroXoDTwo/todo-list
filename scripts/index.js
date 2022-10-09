@@ -84,12 +84,14 @@ function createGroupSelectItem (text) {
   return listItem;
 }
 
-function createTaskListItem (text) {
+function createTaskListItem (text, checkbox) {
   const listItem = taskItemTemplate.querySelector('.task__list-item').cloneNode(true);
   const textItem = listItem.querySelector('.task__item-text');
+  const checkboxItem = listItem.querySelector('.task__checkbox');
   const deleteBtnItem = listItem.querySelector('.task__item-btn_type_delete');
   const editBtnItem = listItem.querySelector('.task__item-btn_type_edit');
   textItem.textContent = text;
+  checkboxItem.checked = checkbox;
   deleteBtnItem.addEventListener('click', () => { deleteTaskListItem(listItem); });
   editBtnItem.addEventListener('click', () => { fillFormEditTaskListItem(listItem, text); });
 
@@ -113,8 +115,8 @@ function renderGroups (containerItem) {
   });
 }
 
-function renderTaskListItem (text) {
-  const item = createTaskListItem(text);
+function renderTaskListItem (text, checkbox) {
+  const item = createTaskListItem(text, checkbox);
   taskListSection.append(item);
 }
 
@@ -122,7 +124,7 @@ function renderTaskList (item) {
   taskListSection.innerHTML = '';
   item.forEach((item) => {
     if (item.group === selectGroup) {
-      item.tasks.forEach((task) => { renderTaskListItem(task.text); });
+      item.tasks.forEach((task) => { renderTaskListItem(task.text, task.checkbox); });
     }
   });
 }
@@ -132,12 +134,21 @@ function renderMain (containerItem) {
   renderTaskList(containerItem);
 }
 
+function addTaskInInitialListItems () {
+  initialTaskListItems.forEach((item) => {
+    if (item.group === selectGroup) {
+      item.tasks.push({text: inputTextTask.value, checkbox: false});
+    }
+  });
+}
+
 function formTaskSubmitHandler (evt) {
   evt.preventDefault();
 
   switch (typeSumbitForm) {
     case 'add':
-      renderTaskListItem(inputTextTask.value);
+      addTaskInInitialListItems();
+      renderTaskListItem(inputTextTask.value, false);
         break;
     case 'edit':
       editTaskListItem();

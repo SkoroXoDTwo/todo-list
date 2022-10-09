@@ -4,7 +4,7 @@ const initialTaskListItems = [
     tasks: [
       {
         text: 'почистить зубы',
-        checkbox: false
+        checkbox: true
       },
       {
         text: 'помыться',

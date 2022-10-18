@@ -10,4 +10,5 @@
   border: 2px solid transparent;
   border-radius: 14px;
   box-sizing: border-box;
+  transition: border 0.2s;
 }

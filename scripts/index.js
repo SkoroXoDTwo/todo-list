@@ -32,7 +32,21 @@ function deleteTaskListItem (item) {
   item.remove();
 }
 
+function deleteTaskInInitialListItems (item) {
+  const textItem = item.querySelector('.task__item-text').textContent;
+  initialTaskListItems.forEach((groupList) => {
+    if (groupList.group === selectGroup) {
+      groupList.tasks.forEach((taskList, index) => {
+        if(taskList.text === textItem) {
+          groupList.tasks.splice(index, 1);
+        }
+      });
+    }
+  });
+}
+
 function fillFormEditTaskListItem (item, text) {
+  item.classList.add('task__list-item_type_edit');
   inputTextTask.value = text;
   itemListActionEdit = item;
   typeSumbitForm = 'edit';
@@ -92,7 +106,12 @@ function createTaskListItem (text, checkbox) {
   const editBtnItem = listItem.querySelector('.task__item-btn_type_edit');
   textItem.textContent = text;
   checkboxItem.checked = checkbox;
-  deleteBtnItem.addEventListener('click', () => { deleteTaskListItem(listItem); });
+
+  deleteBtnItem.addEventListener('click', () => {
+    deleteTaskListItem(listItem);
+    deleteTaskInInitialListItems(listItem);
+  });
+
   editBtnItem.addEventListener('click', () => { fillFormEditTaskListItem(listItem, text); });
 
   return listItem;

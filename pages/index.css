@@ -34,6 +34,7 @@
 @import url(../blocks/task/__title/task__title.css);
 @import url(../blocks/task/__list/task__list.css);
 @import url(../blocks/task/__list-item/task__list-item.css);
+@import url(../blocks/task/__list-item/_type/task__list-item_type_edit.css);
 @import url(../blocks/task/__checkbox/task__checkbox.css);
 @import url(../blocks/task/__item-text/task__item-text.css);
 @import url(../blocks/task/__item-menu/task__item-menu.css);

@@ -63,11 +63,16 @@ function deleteTaskItemClassEdit () {
   }
 }
 
+function changeBtnFormIsAdd () {
+  typeSumbitForm = 'add';
+  formAddTaskBtn.textContent = typeSumbitForm;
+  inputTextTask.value = '';
+}
+
 function editTaskListItem () {
   const textItem = itemListActionEdit.querySelector('.task__item-text');
   textItem.textContent = inputTextTask.value;
-  typeSumbitForm = 'add';
-  formAddTaskBtn.textContent = typeSumbitForm;
+  changeBtnFormIsAdd();
 }
 
 function changeSelected () {
@@ -118,6 +123,7 @@ function createTaskListItem (text, checkbox) {
   checkboxItem.checked = checkbox;
 
   deleteBtnItem.addEventListener('click', () => {
+    changeBtnFormIsAdd();
     deleteTaskListItem(listItem);
     deleteTaskInInitialListItems(listItem);
   });
@@ -182,13 +188,14 @@ function formTaskSubmitHandler (evt) {
     case 'add':
       addTaskInInitialListItems();
       renderTaskListItem(inputTextTask.value, false);
+      inputTextTask.value = '';
         break;
     case 'edit':
       deleteTaskItemClassEdit();
       editTaskListItem();
   }
 
-  inputTextTask.value = '';
+
 }
 
 changeHeightSectionTask();

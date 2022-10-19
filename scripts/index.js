@@ -57,6 +57,21 @@ function checkedTaskInInitialListItems(item) {
   });
 }
 
+function editTaskInInitialListItems() {
+  const item = document.querySelector('.task__list-item_type_edit');
+  const textItem = item.querySelector('.task__item-text').textContent;
+  
+  initialTaskListItems.forEach((groupList) => {
+    if (groupList.group === selectGroup) {
+      groupList.tasks.forEach((taskList, index) => {
+        if(taskList.text === textItem) {
+          groupList.tasks[index].text = inputTextTask.value;
+        }
+      });
+    }
+  });
+}
+
 function fillFormEditTaskListItem (item, text) {
   inputTextTask.value = text;
   itemListActionEdit = item;
@@ -206,6 +221,7 @@ function formTaskSubmitHandler (evt) {
       inputTextTask.value = '';
         break;
     case 'edit':
+      editTaskInInitialListItems();
       deleteTaskItemClassEdit();
       editTaskListItem();
   }

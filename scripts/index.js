@@ -15,7 +15,6 @@ let selectGroup = initialTaskListItems[0].group;
 let isDesctopPositionSection = () => document.documentElement.offsetWidth > 700;
 let getHeightScrollScreen = () => documentElement.scrollHeight - documentElement.offsetHeight;
 
-
 function changeHeightSectionTask () {
   mainSection.removeAttribute('style');
   taskListSection.removeAttribute('style');
@@ -88,6 +87,7 @@ function changeSelected () {
 
 function activeGroupListItem (textItem) {
   selectGroup = textItem.textContent;
+  changeBtnFormIsAdd();
   changeSelected();
   renderTaskList(initialTaskListItems);
 }
@@ -121,6 +121,10 @@ function createTaskListItem (text, checkbox) {
   const editBtnItem = listItem.querySelector('.task__item-btn_type_edit');
   textItem.textContent = text;
   checkboxItem.checked = checkbox;
+
+  checkboxItem.addEventListener('change', () => {
+    console.log('change');
+  });
 
   deleteBtnItem.addEventListener('click', () => {
     changeBtnFormIsAdd();

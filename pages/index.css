@@ -22,10 +22,13 @@
 @import url(../blocks/group/__list-item/group__list-item.css);
 @import url(../blocks/group/__list-item/_active/group__list-item_active.css);
 @import url(../blocks/group/__item-text/group__item-text.css);
+@import url(../blocks/group/__menu/group__menu.css);
 @import url(../blocks/group/__item-menu/group__item-menu.css);
 @import url(../blocks/group/__item-btn/group__item-btn.css);
 @import url(../blocks/group/__item-btn/_type/group__item-btn_type_delete.css);
 @import url(../blocks/group/__item-btn/_type/group__item-btn_type_edit.css);
+@import url(../blocks/group/__item-btn/_type/group__item-btn_type_edit-mobile.css);
+@import url(../blocks/group/__item-btn/_type/group__item-btn_type_delete-mobile.css);
 @import url(../blocks/group/__add-btn/group__add-btn.css);
 @import url(../blocks/group/__select/group__select.css);
 

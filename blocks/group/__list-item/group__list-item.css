@@ -8,11 +8,11 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  transition: opacity 0.2s;
+  transition: background-color 0.2s;
   box-sizing: border-box;
 }
 
 .group__list-item:hover {
   cursor: pointer;
-  opacity: 0.6;
+  background-color: rgb(31, 30, 30, .6);
 }

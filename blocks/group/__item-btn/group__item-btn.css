@@ -6,12 +6,12 @@
   border: none;
   background: none;
   background-size: contain;
-  transition: opacity 0.2s;
+  transition: transform .2s;
 }
 
 .group__item-btn:hover {
   cursor: pointer;
-  opacity: 0.6;
+  transform: scale(1.15);
 }
 
 @media screen and (max-width: 500px) {

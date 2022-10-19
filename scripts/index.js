@@ -44,6 +44,19 @@ function deleteTaskInInitialListItems (item) {
   });
 }
 
+function checkedTaskInInitialListItems(item) {
+  const textItem = item.querySelector('.task__item-text').textContent;
+  initialTaskListItems.forEach((groupList) => {
+    if (groupList.group === selectGroup) {
+      groupList.tasks.forEach((taskList, index) => {
+        if(taskList.text === textItem) {
+          groupList.tasks[index].checkbox = !groupList.tasks[index].checkbox;
+        }
+      });
+    }
+  });
+}
+
 function fillFormEditTaskListItem (item, text) {
   inputTextTask.value = text;
   itemListActionEdit = item;
@@ -122,9 +135,7 @@ function createTaskListItem (text, checkbox) {
   textItem.textContent = text;
   checkboxItem.checked = checkbox;
 
-  checkboxItem.addEventListener('change', () => {
-    console.log('change');
-  });
+  checkboxItem.addEventListener('change', () => { checkedTaskInInitialListItems(listItem); });
 
   deleteBtnItem.addEventListener('click', () => {
     changeBtnFormIsAdd();

@@ -1,0 +1,17 @@
+.popup__add-btn {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
+}
+
+.popup__add-btn:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}

@@ -9,6 +9,8 @@ const formAddTaskBtn = formAddTask.querySelector('.task__add-btn');
 const taskItemTemplate = document.querySelector('#task-list-option-template').content;
 const groupListItemTemplate = document.querySelector('#group-list-item-template').content;
 const groupSelectItemTemplate = document.querySelector('#group-select-item-template').content;
+
+const popupAddGroup = document.querySelector('#popup-add-group');
 let itemListActionEdit;
 let typeSumbitForm = 'add';
 let selectGroup = initialTaskListItems[0].group;
@@ -25,6 +27,14 @@ function changeHeightSectionTask () {
   else {
     taskListSection.style.height = (taskListSection.offsetHeight - getHeightScrollScreen()) + 'px';
   }
+}
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
 }
 
 function deleteTaskListItem (item) {
@@ -60,7 +70,7 @@ function checkedTaskInInitialListItems(item) {
 function editTaskInInitialListItems() {
   const item = document.querySelector('.task__list-item_type_edit');
   const textItem = item.querySelector('.task__item-text').textContent;
-  
+
   initialTaskListItems.forEach((groupList) => {
     if (groupList.group === selectGroup) {
       groupList.tasks.forEach((taskList, index) => {

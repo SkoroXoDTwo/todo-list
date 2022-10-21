@@ -47,6 +47,15 @@ function deleteItem (item) {
   item.remove();
 }
 
+function deleteOpion(textItem) {
+  const options = groupSelectSection.querySelectorAll('.group__select-option');
+  options.forEach((option) => {
+    if(option.textContent == textItem.textContent) {
+      deleteItem(option);
+    }
+  });
+}
+
 function addGroupInInitialListItems () {
   initialTaskListItems.push({ group: popupAddGroupInput.value, tasks: [] });
 }
@@ -151,7 +160,21 @@ function changeSelected () {
 }
 
 function activeGroupListItem (textItem) {
-  selectGroup = textItem.textContent;
+  const groups = groupListSection.querySelectorAll('.group__list-item');
+  const activeGroup = groupListSection.querySelector('.group__list-item_active');
+  if(activeGroup !== null) {
+    activeGroup.classList.remove('group__list-item_active');
+  }
+
+  groups.forEach((group) => {
+    const groupName = group.querySelector('.group__item-text');
+    if(groupName.textContent == textItem) {
+      group.classList.add('group__list-item_active');
+    }
+  });
+
+  selectGroup = textItem;
+
   changeBtnFormIsAdd();
   changeSelected();
   renderTaskList(initialTaskListItems);
@@ -166,10 +189,20 @@ function createGroupListItem (text) {
   const listItem = groupListItemTemplate.querySelector('.group__list-item').cloneNode(true);
   const textItem = listItem.querySelector('.group__item-text');
   const btnDeleteItem = listItem.querySelector('.group__item-btn_type_delete');
-  listItem.addEventListener('click', () => { activeGroupListItem(textItem); });
-  btnDeleteItem.addEventListener('click', () => {
+  listItem.addEventListener('click', () => { activeGroupListItem(textItem.textContent); });
+  btnDeleteItem.addEventListener('click', (evt) => {
      deleteItem(listItem);
+     deleteOpion(textItem);
      deleteGroupInInitialListItems(listItem);
+     if(initialTaskListItems.length !== 0) {
+      activeGroupListItem(initialTaskListItems[0].group);
+     }
+     else {
+      formAddTaskBtn.disabled = true;
+      formAddTaskBtn.classList.add('task__add-btn_disabled');
+      taskListSection.innerHTML = '';
+     }
+     evt.stopImmediatePropagation();
     });
   textItem.textContent = text;
 
@@ -210,8 +243,8 @@ function createTaskListItem (text, checkbox) {
 }
 
 function renderGroupListItem (text) {
-  const item = createGroupListItem(text);
-  groupListSection.append(item);
+    const item = createGroupListItem(text);
+    groupListSection.append(item);
 }
 
 function renderGroupSelectItem (text) {
@@ -243,6 +276,7 @@ function renderTaskList (item) {
 function renderMain (containerItem) {
   renderGroups(containerItem)
   renderTaskList(containerItem);
+  activeGroupListItem(initialTaskListItems[0].group);
 }
 
 function formTaskSubmitHandler (evt) {
@@ -261,14 +295,20 @@ function formTaskSubmitHandler (evt) {
   }
 }
 
+function enabledAddTaskBtn() {
+  if(initialTaskListItems.length === 0) {
+    formAddTaskBtn.disabled = false;
+    formAddTaskBtn.classList.remove('task__add-btn_disabled');
+  }
+}
+
 function submitPopupAddGroupForm(evt) {
   evt.preventDefault();
-
+  enabledAddTaskBtn();
   addGroupInInitialListItems();
-
   renderGroupListItem(popupAddGroupInput.value);
   renderGroupSelectItem(popupAddGroupInput.value);
-
+  activeGroupListItem(popupAddGroupInput.value);
   popupAddGroupInput.value = '';
   closePopup(popupAddGroup);
 }

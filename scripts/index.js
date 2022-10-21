@@ -43,12 +43,21 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-function deleteTaskListItem (item) {
+function deleteItem (item) {
   item.remove();
 }
 
 function addGroupInInitialListItems () {
   initialTaskListItems.push({ group: popupAddGroupInput.value, tasks: [] });
+}
+
+function deleteGroupInInitialListItems (item) {
+  const textItem = item.querySelector('.group__item-text').textContent;
+  initialTaskListItems.forEach((groupList, index) => {
+    if (groupList.group === textItem) {
+      initialTaskListItems.splice(index, 1);
+    }
+  });
 }
 
 function addTaskInInitialListItems () {
@@ -156,7 +165,12 @@ function activeGroupSelectItem () {
 function createGroupListItem (text) {
   const listItem = groupListItemTemplate.querySelector('.group__list-item').cloneNode(true);
   const textItem = listItem.querySelector('.group__item-text');
+  const btnDeleteItem = listItem.querySelector('.group__item-btn_type_delete');
   listItem.addEventListener('click', () => { activeGroupListItem(textItem); });
+  btnDeleteItem.addEventListener('click', () => {
+     deleteItem(listItem);
+     deleteGroupInInitialListItems(listItem);
+    });
   textItem.textContent = text;
 
   return listItem;
@@ -182,7 +196,7 @@ function createTaskListItem (text, checkbox) {
 
   deleteBtnItem.addEventListener('click', () => {
     changeBtnFormIsAdd();
-    deleteTaskListItem(listItem);
+    deleteItem(listItem);
     deleteTaskInInitialListItems(listItem);
   });
 
@@ -245,11 +259,7 @@ function formTaskSubmitHandler (evt) {
       deleteTaskItemClassEdit();
       editTaskListItem();
   }
-
-
 }
-
-
 
 function submitPopupAddGroupForm(evt) {
   evt.preventDefault();

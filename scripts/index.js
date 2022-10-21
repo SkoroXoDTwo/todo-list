@@ -11,6 +11,12 @@ const groupListItemTemplate = document.querySelector('#group-list-item-template'
 const groupSelectItemTemplate = document.querySelector('#group-select-item-template').content;
 
 const popupAddGroup = document.querySelector('#popup-add-group');
+const popupAddGroupForm = popupAddGroup.querySelector('.popup__form');
+const popupAddGroupInput = popupAddGroupForm.querySelector('.popup__input');
+
+const popupAddGroupOpenBtn = document.querySelector('.group__add-btn');
+
+
 let itemListActionEdit;
 let typeSumbitForm = 'add';
 let selectGroup = initialTaskListItems[0].group;
@@ -39,6 +45,18 @@ function closePopup(popup) {
 
 function deleteTaskListItem (item) {
   item.remove();
+}
+
+function addGroupInInitialListItems () {
+  initialTaskListItems.push({ group: popupAddGroupInput.value, tasks: [] });
+}
+
+function addTaskInInitialListItems () {
+  initialTaskListItems.forEach((item) => {
+    if (item.group === selectGroup) {
+      item.tasks.push({text: inputTextTask.value, checkbox: false});
+    }
+  });
 }
 
 function deleteTaskInInitialListItems (item) {
@@ -213,14 +231,6 @@ function renderMain (containerItem) {
   renderTaskList(containerItem);
 }
 
-function addTaskInInitialListItems () {
-  initialTaskListItems.forEach((item) => {
-    if (item.group === selectGroup) {
-      item.tasks.push({text: inputTextTask.value, checkbox: false});
-    }
-  });
-}
-
 function formTaskSubmitHandler (evt) {
   evt.preventDefault();
 
@@ -239,10 +249,44 @@ function formTaskSubmitHandler (evt) {
 
 }
 
+
+
+function submitPopupAddGroupForm(evt) {
+  evt.preventDefault();
+
+  addGroupInInitialListItems();
+
+  renderGroupListItem(popupAddGroupInput.value);
+  renderGroupSelectItem(popupAddGroupInput.value);
+
+  popupAddGroupInput.value = '';
+  closePopup(popupAddGroup);
+}
+
+
+function addListenerClosePopupBtns() {
+  const popups = document.querySelectorAll('.popup')
+
+  popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) {
+          closePopup(popup)
+      }
+      if (evt.target.classList.contains('popup__close-btn')) {
+        closePopup(popup)
+      }
+    });
+  });
+}
+
 changeHeightSectionTask();
 renderMain(initialTaskListItems);
 window.addEventListener('resize', () => { changeHeightSectionTask(); });
 formAddTask.addEventListener('submit', formTaskSubmitHandler);
+
+addListenerClosePopupBtns();
+popupAddGroupOpenBtn.addEventListener('click', () => { openPopup(popupAddGroup) });
+popupAddGroupForm.addEventListener('submit', submitPopupAddGroupForm);
 
 groupSelectSection.addEventListener('change', activeGroupSelectItem);
 

@@ -12,6 +12,11 @@
   line-height: 1.25;
 }
 
+.task__textarea::placeholder {
+  color: #767676;
+}
+
+
 @media screen and (max-width: 700px) {
   .task__textarea {
     padding: 5px 10px;

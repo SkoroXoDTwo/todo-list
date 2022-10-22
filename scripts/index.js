@@ -194,6 +194,9 @@ function toggleEnabledBtnAddTask  () {
     activeGroupListItem(initialTaskListItems[0].group);
    }
    else {
+    inputTextTask.placeholder = 'Create a group...';
+    inputTextTask.classList.add('task__textarea_placeholder-red');
+    inputTextTask.disabled = true;
     formAddTaskBtn.disabled = true;
     formAddTaskBtn.classList.add('task__add-btn_disabled');
     taskListSection.innerHTML = '';
@@ -304,6 +307,9 @@ function formTaskSubmitHandler (evt) {
 
 function enabledAddTaskBtn() {
   if(initialTaskListItems.length === 0) {
+    inputTextTask.placeholder = 'Enter the text...';
+    inputTextTask.classList.remove('task__textarea_placeholder-red');
+    inputTextTask.disabled = false;
     formAddTaskBtn.disabled = false;
     formAddTaskBtn.classList.remove('task__add-btn_disabled');
   }

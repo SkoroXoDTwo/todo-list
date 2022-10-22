@@ -1,0 +1,12 @@
+@keyframes flashing-border-delete {
+  to {
+    border: 2px solid none;
+  }
+  from {
+    border: 2px solid #f90000;
+  }
+}
+
+.group__list-item_animation_delete {
+  animation: 1s linear 0s infinite alternate-reverse flashing-border-delete;
+}

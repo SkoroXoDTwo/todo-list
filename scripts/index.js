@@ -10,12 +10,15 @@ const taskItemTemplate = document.querySelector('#task-list-option-template').co
 const groupListItemTemplate = document.querySelector('#group-list-item-template').content;
 const groupSelectItemTemplate = document.querySelector('#group-select-item-template').content;
 
+const btnDeleteGroupItemMobile = document.querySelector('.group__item-btn_type_delete-mobile');
+
 const popupAddGroup = document.querySelector('#popup-add-group');
 const popupAddGroupForm = popupAddGroup.querySelector('.popup__form');
 const popupAddGroupInput = popupAddGroupForm.querySelector('.popup__input');
-
 const popupAddGroupOpenBtn = document.querySelector('.group__add-btn');
 
+const popupDeletedGroup = document.querySelector('#popup-delete-group');
+const popupDeleteGroupForm = popupDeletedGroup.querySelector('.popup__form');
 
 let itemListActionEdit;
 let typeSumbitForm = 'add';
@@ -50,7 +53,7 @@ function deleteItem (item) {
 function deleteOpion(textItem) {
   const options = groupSelectSection.querySelectorAll('.group__select-option');
   options.forEach((option) => {
-    if(option.textContent == textItem.textContent) {
+    if(option.textContent == textItem) {
       deleteItem(option);
     }
   });
@@ -60,8 +63,7 @@ function addGroupInInitialListItems () {
   initialTaskListItems.push({ group: popupAddGroupInput.value, tasks: [] });
 }
 
-function deleteGroupInInitialListItems (item) {
-  const textItem = item.querySelector('.group__item-text').textContent;
+function deleteGroupInInitialListItems (textItem) {
   initialTaskListItems.forEach((groupList, index) => {
     if (groupList.group === textItem) {
       initialTaskListItems.splice(index, 1);
@@ -183,6 +185,18 @@ function activeGroupListItem (textItem) {
 function activeGroupSelectItem () {
   selectGroup = groupSelectSection.options[groupSelectSection.selectedIndex].text;
   renderTaskList(initialTaskListItems);
+  activeGroupListItem(selectGroup);
+}
+
+function toggleEnabledBtnAddTask  () {
+  if(initialTaskListItems.length !== 0) {
+    activeGroupListItem(initialTaskListItems[0].group);
+   }
+   else {
+    formAddTaskBtn.disabled = true;
+    formAddTaskBtn.classList.add('task__add-btn_disabled');
+    taskListSection.innerHTML = '';
+   }
 }
 
 function createGroupListItem (text) {
@@ -191,17 +205,8 @@ function createGroupListItem (text) {
   const btnDeleteItem = listItem.querySelector('.group__item-btn_type_delete');
   listItem.addEventListener('click', () => { activeGroupListItem(textItem.textContent); });
   btnDeleteItem.addEventListener('click', (evt) => {
-     deleteItem(listItem);
-     deleteOpion(textItem);
-     deleteGroupInInitialListItems(listItem);
-     if(initialTaskListItems.length !== 0) {
-      activeGroupListItem(initialTaskListItems[0].group);
-     }
-     else {
-      formAddTaskBtn.disabled = true;
-      formAddTaskBtn.classList.add('task__add-btn_disabled');
-      taskListSection.innerHTML = '';
-     }
+    openPopup(popupDeletedGroup);
+    listItem.classList.add('group__list-item_animation_delete');
      evt.stopImmediatePropagation();
     });
   textItem.textContent = text;
@@ -304,6 +309,7 @@ function enabledAddTaskBtn() {
 
 function submitPopupAddGroupForm(evt) {
   evt.preventDefault();
+
   enabledAddTaskBtn();
   addGroupInInitialListItems();
   renderGroupListItem(popupAddGroupInput.value);
@@ -313,18 +319,35 @@ function submitPopupAddGroupForm(evt) {
   closePopup(popupAddGroup);
 }
 
+function submitPopupDeleteGroupForm(evt) {
+  evt.preventDefault();
+
+  const item = groupListSection.querySelector('.group__list-item_animation_delete');
+  const textItem = item.querySelector('.group__item-text').textContent;
+  deleteItem(item);
+  deleteOpion(textItem);
+  deleteGroupInInitialListItems(textItem);
+  toggleEnabledBtnAddTask();
+  closePopup(popupDeletedGroup);
+}
+
 
 function addListenerClosePopupBtns() {
   const popups = document.querySelectorAll('.popup')
 
   popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
+
       if (evt.target.classList.contains('popup_opened')) {
           closePopup(popup)
       }
       if (evt.target.classList.contains('popup__close-btn')) {
         closePopup(popup)
       }
+      if (evt.target.classList.contains('popup__btn_type_delete-no')) {
+        closePopup(popup)
+      }
+      
     });
   });
 }
@@ -335,8 +358,23 @@ window.addEventListener('resize', () => { changeHeightSectionTask(); });
 formAddTask.addEventListener('submit', formTaskSubmitHandler);
 
 addListenerClosePopupBtns();
+
 popupAddGroupOpenBtn.addEventListener('click', () => { openPopup(popupAddGroup) });
+
 popupAddGroupForm.addEventListener('submit', submitPopupAddGroupForm);
+popupDeleteGroupForm.addEventListener('submit', submitPopupDeleteGroupForm);
 
 groupSelectSection.addEventListener('change', activeGroupSelectItem);
+
+btnDeleteGroupItemMobile.addEventListener('click', () => {
+  openPopup(popupDeletedGroup);
+
+  const items = groupListSection.querySelectorAll('.group__list-item');
+  items.forEach((item) => {
+    const textItem = item.querySelector('.group__item-text').textContent;
+    if(textItem === selectGroup) {
+      item.classList.add('group__list-item_animation_delete');
+    }
+  });
+});
 

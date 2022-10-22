@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,7 +49,7 @@
 
         </ul>
         <form class="task__form">
-          <textarea class="task__textarea" placeholder="Введите текст..." required></textarea>
+          <textarea class="task__textarea" placeholder="Enter the text..." required></textarea>
           <button class="task__add-btn" type="submit">add</button>
         </form>
       </section>
@@ -65,7 +65,18 @@
         <h2 class="popup__title">New group</h2>
         <form class="popup__form">
           <input class="popup__input" type="text" placeholder="Name...">
-          <button class="popup__add-btn" type="submit">add</button>
+          <button class="popup__btn" type="submit">add</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup" id="popup-delete-group">
+      <div class="popup__container">
+        <button class="popup__close-btn"></button>
+        <h2 class="popup__title">Are you sure you want to delete the "home" group?</h2>
+        <form class="popup__form popup__form_type_group-delete">
+          <button class="popup__btn popup__btn_type_delete-yes" type="submit">yes</button>
+          <button class="popup__btn popup__btn_type_delete-no" type="button">no</button>
         </form>
       </div>
     </div>

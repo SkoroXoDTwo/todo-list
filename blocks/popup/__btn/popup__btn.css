@@ -1,4 +1,4 @@
-.popup__add-btn {
+.popup__btn {
   margin: 0;
   padding: 0;
   border: none;
@@ -11,7 +11,7 @@
   transition: opacity 0.2s;
 }
 
-.popup__add-btn:hover {
+.popup__btn:hover {
   cursor: pointer;
   opacity: 0.6;
 }

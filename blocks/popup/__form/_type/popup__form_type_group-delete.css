@@ -1,3 +1,4 @@
 .popup__form_type_group-delete {
   flex-direction: row;
+  gap: 30px;
 }

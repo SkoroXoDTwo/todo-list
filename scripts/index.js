@@ -14,6 +14,7 @@ const btnDeleteGroupItemMobile = document.querySelector('.group__item-btn_type_d
 
 const popupAddGroup = document.querySelector('#popup-add-group');
 const popupAddGroupForm = popupAddGroup.querySelector('.popup__form');
+const popupAddGroupErrorMessage = popupAddGroupForm.querySelector('.popup__input-error');
 const popupAddGroupInput = popupAddGroupForm.querySelector('.popup__input');
 const popupAddGroupSubmitBtn = popupAddGroupForm.querySelector('.popup__btn');
 const popupAddGroupOpenBtn = document.querySelector('.group__add-btn');
@@ -202,6 +203,9 @@ function toggleEnabledBtnAddTask  () {
     formAddTaskBtn.disabled = true;
     formAddTaskBtn.classList.add('task__add-btn_disabled');
     taskListSection.innerHTML = '';
+    inputTextTask.value = '';
+    typeSumbitForm = 'add';
+    formAddTaskBtn.textContent = 'add';
    }
 }
 
@@ -381,14 +385,30 @@ function addListenerClosePopupBtns() {
   });
 }
 
-function validationPopupFormAddGroup () {
+function enabledMessageErrorInPopupAddGroup () {
+  popupAddGroupErrorMessage.classList.add('popup__input-error_visibility');
+  popupAddGroupSubmitBtn.classList.add('popup__btn_disabled');
+  popupAddGroupSubmitBtn.disabled = true;
+}
+
+function disabledMessageErrorInPopupAddGroup () {
+  popupAddGroupErrorMessage.classList.remove('popup__input-error_visibility');
   popupAddGroupSubmitBtn.classList.remove('popup__btn_disabled');
   popupAddGroupSubmitBtn.disabled = false;
+}
+
+function validationPopupFormAddGroup () {
+  disabledMessageErrorInPopupAddGroup();
+
+  if(popupAddGroupInput.value.length === 0) {
+    enabledMessageErrorInPopupAddGroup();
+    popupAddGroupErrorMessage.textContent = 'Min of 1 characters';
+  }
 
   initialTaskListItems.forEach((item) => {
-    if(item.group === popupAddGroupInput.value || popupAddGroupInput.value.length === 0) {
-      popupAddGroupSubmitBtn.classList.add('popup__btn_disabled');
-      popupAddGroupSubmitBtn.disabled = true;
+    if(item.group === popupAddGroupInput.value) {
+      enabledMessageErrorInPopupAddGroup();
+      popupAddGroupErrorMessage.textContent = 'That names taken.';
     }
   });
 }
@@ -401,8 +421,8 @@ formAddTask.addEventListener('submit', formTaskSubmitHandler);
 addListenerClosePopupBtns();
 
 popupAddGroupOpenBtn.addEventListener('click', () => {
+  openPopup(popupAddGroup);
   validationPopupFormAddGroup();
-  openPopup(popupAddGroup)
 });
 
 popupAddGroupForm.addEventListener('submit', submitPopupAddGroupForm);

@@ -67,4 +67,5 @@
 @import url(../blocks/popup/__form/_type/popup__form_type_group-delete.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__btn/popup__btn.css);
+@import url(../blocks/popup/__btn/_disabled/popup__btn_disabled.css);
 @import url(../blocks/popup/__btn/_type/popup__btn_type_delete-yes.css);

@@ -15,6 +15,7 @@ const btnDeleteGroupItemMobile = document.querySelector('.group__item-btn_type_d
 const popupAddGroup = document.querySelector('#popup-add-group');
 const popupAddGroupForm = popupAddGroup.querySelector('.popup__form');
 const popupAddGroupInput = popupAddGroupForm.querySelector('.popup__input');
+const popupAddGroupSubmitBtn = popupAddGroupForm.querySelector('.popup__btn');
 const popupAddGroupOpenBtn = document.querySelector('.group__add-btn');
 
 const popupDeletedGroup = document.querySelector('#popup-delete-group');
@@ -380,6 +381,18 @@ function addListenerClosePopupBtns() {
   });
 }
 
+function validationPopupFormAddGroup () {
+  popupAddGroupSubmitBtn.classList.remove('popup__btn_disabled');
+  popupAddGroupSubmitBtn.disabled = false;
+
+  initialTaskListItems.forEach((item) => {
+    if(item.group === popupAddGroupInput.value || popupAddGroupInput.value.length === 0) {
+      popupAddGroupSubmitBtn.classList.add('popup__btn_disabled');
+      popupAddGroupSubmitBtn.disabled = true;
+    }
+  });
+}
+
 changeHeightSectionTask();
 renderMain(initialTaskListItems);
 window.addEventListener('resize', () => { changeHeightSectionTask(); });
@@ -387,7 +400,10 @@ formAddTask.addEventListener('submit', formTaskSubmitHandler);
 
 addListenerClosePopupBtns();
 
-popupAddGroupOpenBtn.addEventListener('click', () => { openPopup(popupAddGroup) });
+popupAddGroupOpenBtn.addEventListener('click', () => {
+  validationPopupFormAddGroup();
+  openPopup(popupAddGroup)
+});
 
 popupAddGroupForm.addEventListener('submit', submitPopupAddGroupForm);
 popupDeleteGroupForm.addEventListener('submit', submitPopupDeleteGroupForm);
@@ -399,4 +415,6 @@ btnDeleteGroupItemMobile.addEventListener('click', () => {
   openPopup(popupDeletedGroup);
   addClassAnimationDeleteGroupItem();
 });
+
+popupAddGroupInput.addEventListener('input', validationPopupFormAddGroup);
 

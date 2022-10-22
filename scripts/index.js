@@ -331,23 +331,41 @@ function submitPopupDeleteGroupForm(evt) {
   closePopup(popupDeletedGroup);
 }
 
+function addClassAnimationDeleteGroupItem () {
+  const items = groupListSection.querySelectorAll('.group__list-item');
+  items.forEach((item) => {
+    const textItem = item.querySelector('.group__item-text').textContent;
+    if(textItem === selectGroup) {
+      item.classList.add('group__list-item_animation_delete');
+    }
+  });
+}
+
+function removeClassAnimationDeleteGroupItem () {
+  const item = groupListSection.querySelector('.group__list-item_animation_delete');
+  if(item) {
+    item.classList.remove('group__list-item_animation_delete');
+  }
+}
 
 function addListenerClosePopupBtns() {
   const popups = document.querySelectorAll('.popup')
 
   popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
-
       if (evt.target.classList.contains('popup_opened')) {
-          closePopup(popup)
+        removeClassAnimationDeleteGroupItem();
+        closePopup(popup)
       }
       if (evt.target.classList.contains('popup__close-btn')) {
+        removeClassAnimationDeleteGroupItem();
         closePopup(popup)
       }
       if (evt.target.classList.contains('popup__btn_type_delete-no')) {
+        removeClassAnimationDeleteGroupItem();
         closePopup(popup)
       }
-      
+
     });
   });
 }
@@ -368,13 +386,6 @@ groupSelectSection.addEventListener('change', activeGroupSelectItem);
 
 btnDeleteGroupItemMobile.addEventListener('click', () => {
   openPopup(popupDeletedGroup);
-
-  const items = groupListSection.querySelectorAll('.group__list-item');
-  items.forEach((item) => {
-    const textItem = item.querySelector('.group__item-text').textContent;
-    if(textItem === selectGroup) {
-      item.classList.add('group__list-item_animation_delete');
-    }
-  });
+  addClassAnimationDeleteGroupItem();
 });
 

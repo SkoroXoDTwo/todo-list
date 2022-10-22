@@ -19,6 +19,7 @@ const popupAddGroupOpenBtn = document.querySelector('.group__add-btn');
 
 const popupDeletedGroup = document.querySelector('#popup-delete-group');
 const popupDeleteGroupForm = popupDeletedGroup.querySelector('.popup__form');
+const popupDeleteGroupTitle = popupDeletedGroup.querySelector('.popup__title');
 
 let itemListActionEdit;
 let typeSumbitForm = 'add';
@@ -205,6 +206,7 @@ function createGroupListItem (text) {
   const btnDeleteItem = listItem.querySelector('.group__item-btn_type_delete');
   listItem.addEventListener('click', () => { activeGroupListItem(textItem.textContent); });
   btnDeleteItem.addEventListener('click', (evt) => {
+    popupDeleteGroupTitle.textContent = `Are you sure you want to delete the "${textItem.textContent}" group?`;
     openPopup(popupDeletedGroup);
     listItem.classList.add('group__list-item_animation_delete');
      evt.stopImmediatePropagation();
@@ -385,6 +387,7 @@ popupDeleteGroupForm.addEventListener('submit', submitPopupDeleteGroupForm);
 groupSelectSection.addEventListener('change', activeGroupSelectItem);
 
 btnDeleteGroupItemMobile.addEventListener('click', () => {
+  popupDeleteGroupTitle.textContent = `Are you sure you want to delete the "${selectGroup}" group?`;
   openPopup(popupDeletedGroup);
   addClassAnimationDeleteGroupItem();
 });

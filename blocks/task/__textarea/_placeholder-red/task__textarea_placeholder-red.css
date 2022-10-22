@@ -1,3 +1,7 @@
+.task__textarea_placeholder-red:hover {
+  cursor: not-allowed;
+}
+
 .task__textarea_placeholder-red::placeholder {
   color: #f300009e;
 }

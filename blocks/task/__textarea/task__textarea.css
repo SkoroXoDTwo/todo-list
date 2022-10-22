@@ -13,6 +13,7 @@
 }
 
 .task__textarea::placeholder {
+  transition: color .2s;
   color: #767676;
 }
 

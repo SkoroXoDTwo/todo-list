@@ -1,0 +1,12 @@
+@keyframes scale-loop {
+  to {
+    transform: scale(1.2);
+  }
+  from {
+    transform: scale(1);
+  }
+}
+
+.group__add-btn_scale-animation {
+  animation: 1s linear 0s infinite alternate scale-loop;
+}

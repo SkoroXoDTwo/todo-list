@@ -31,6 +31,7 @@
 @import url(../blocks/group/__item-btn/_type/group__item-btn_type_edit-mobile.css);
 @import url(../blocks/group/__item-btn/_type/group__item-btn_type_delete-mobile.css);
 @import url(../blocks/group/__add-btn/group__add-btn.css);
+@import url(../blocks/group/__add-btn/_scale-animation/group__add-btn_scale-animation.css);
 @import url(../blocks/group/__select/group__select.css);
 
 /* -------------- task -------------- */
@@ -56,7 +57,7 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
-/* -------------- group -------------- */
+/* -------------- popup -------------- */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);

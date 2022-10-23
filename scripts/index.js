@@ -338,6 +338,32 @@ function enabledAddTaskBtn() {
   }
 }
 
+function changeNameGroup() {
+  const itemsMobile = groupSelectSection.querySelectorAll('.group__select-option');
+  const itemDesctop = groupListSection.querySelector('.group__list-item_animation_edit');
+  const itemDesctopText = itemDesctop.querySelector('.group__item-text');
+
+  itemsMobile.forEach((item) => {
+    if(item.textContent === itemDesctopText.textContent) {
+      item.textContent = popupEditGroupInput.value;
+    }
+  });
+
+  itemDesctopText.textContent = popupEditGroupInput.value;
+
+};
+
+function changeNameGroupInInitialListItems() {
+  const item = groupListSection.querySelector('.group__list-item_animation_edit');
+  const itemText = item.querySelector('.group__item-text');
+
+  initialTaskListItems.forEach((item, index) => {
+    if(item.group === itemText.textContent) {
+      item.group = popupEditGroupInput.value;
+    }
+  });
+}
+
 function submitPopupAddGroupForm(evt) {
   evt.preventDefault();
 
@@ -364,6 +390,13 @@ function submitPopupDeleteGroupForm(evt) {
 
 function submitPopupEditGroupForm(evt) {
   evt.preventDefault();
+  
+  changeNameGroupInInitialListItems();
+  changeNameGroup();
+
+  const item = groupListSection.querySelector('.group__list-item_animation_edit');
+  item.classList.remove('group__list-item_animation_edit');
+
   closePopup(popupEditGroup);
 }
 

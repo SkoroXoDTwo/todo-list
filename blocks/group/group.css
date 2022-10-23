@@ -17,7 +17,6 @@
 
 @media screen and (max-width: 900px) {
   .group {
-    min-width: 200px;
     padding: 25px 0 50px;
   }
 }

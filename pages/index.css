@@ -22,6 +22,7 @@
 @import url(../blocks/group/__list-item/group__list-item.css);
 @import url(../blocks/group/__list-item/_active/group__list-item_active.css);
 @import url(../blocks/group/__list-item/_animation/group__list-item_animation_delete.css);
+@import url(../blocks/group/__list-item/_animation/group__list-item_animation_edit.css);
 @import url(../blocks/group/__item-text/group__item-text.css);
 @import url(../blocks/group/__menu/group__menu.css);
 @import url(../blocks/group/__item-menu/group__item-menu.css);

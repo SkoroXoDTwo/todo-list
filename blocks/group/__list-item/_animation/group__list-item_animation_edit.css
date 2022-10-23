@@ -1,0 +1,12 @@
+@keyframes flashing-border-edit {
+  to {
+    border: 2px solid none;
+  }
+  from {
+    border: 2px solid #d17e18;
+  }
+}
+
+.group__list-item_animation_edit {
+  animation: 1s linear 0s infinite alternate-reverse flashing-border-edit;
+}

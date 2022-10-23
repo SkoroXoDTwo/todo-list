@@ -10,7 +10,8 @@
   align-items: center;
   box-sizing: border-box;
   border: 2px solid transparent;
-  transition: background-color 0.2s;
+  transition: background-color .2s;
+  transition: transform .2s;
 }
 
 .group__list-item:hover {

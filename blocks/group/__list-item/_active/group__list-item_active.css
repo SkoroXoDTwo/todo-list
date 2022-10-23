@@ -1,3 +1,5 @@
 .group__list-item_active {
   border: 2px solid #acacac;
+  z-index: 2;
+  transform: scale(1.1);
 }

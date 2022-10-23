@@ -11,6 +11,7 @@ const groupListItemTemplate = document.querySelector('#group-list-item-template'
 const groupSelectItemTemplate = document.querySelector('#group-select-item-template').content;
 
 const btnDeleteGroupItemMobile = document.querySelector('.group__item-btn_type_delete-mobile');
+const btnEditGroupItemMobile = document.querySelector('.group__item-btn_type_edit-mobile');
 
 const popupAddGroup = document.querySelector('#popup-add-group');
 const popupAddGroupForm = popupAddGroup.querySelector('.popup__form');
@@ -229,9 +230,8 @@ function createGroupListItem (text) {
   });
 
   btnEditItem.addEventListener('click', (evt) => {
-    console.log('edit');
-    openPopup(popupEditGroup);
     popupEditGroupInput.value = textItem.textContent;
+    openPopup(popupEditGroup);
     listItem.classList.add('group__list-item_animation_edit');
     evt.stopImmediatePropagation();
   });
@@ -466,6 +466,13 @@ btnDeleteGroupItemMobile.addEventListener('click', () => {
   popupDeleteGroupTitle.textContent = `Are you sure you want to delete the "${selectGroup}" group?`;
   openPopup(popupDeletedGroup);
   addClassAnimationDeleteGroupItem();
+});
+
+btnEditGroupItemMobile.addEventListener('click', () => {
+  popupEditGroupInput.value = selectGroup;
+  const item = groupListSection.querySelector('.group__list-item_active');
+  item.classList.add('group__list-item_animation_edit');
+  openPopup(popupEditGroup);
 });
 
 popupAddGroupInput.addEventListener('input', validationPopupFormAddGroup);
